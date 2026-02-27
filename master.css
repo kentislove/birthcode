@@ -32,6 +32,12 @@
     box-sizing: border-box;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 body {
     font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
     background-color: var(--bg-sand);
@@ -584,9 +590,12 @@ blockquote {
         flex-direction: column;
     }
 
-    .contact-box img {
+    .contact-box img,
+    .harmony-item img {
         width: 100%;
-        height: 250px;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
     }
 
     .contact-action {
