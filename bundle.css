@@ -642,6 +642,103 @@ blockquote {
     transform: translateY(0);
 }
 
+/* --- 核心價值頁面：打破呆板的進階樣式 --- */
+.story-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+    background: var(--white);
+    padding: 60px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 80px;
+}
+
+.story-layout::before {
+    content: 'STORY';
+    position: absolute;
+    top: 20px;
+    right: -30px;
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(26, 60, 59, 0.03);
+    pointer-events: none;
+    letter-spacing: 10px;
+}
+
+.story-text h3 {
+    font-size: 2.2rem;
+    color: var(--primary-deep);
+    margin-bottom: 24px;
+    border-bottom: 3px solid var(--accent-gold);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.story-text p {
+    font-size: 1.15rem;
+    line-height: 2;
+    margin-bottom: 20px;
+    color: var(--text-main);
+    text-align: justify;
+}
+
+.story-text strong {
+    color: var(--accent-gold);
+    background: rgba(197, 160, 67, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.pillar {
+    position: relative;
+    padding: 60px 40px !important;
+    overflow: hidden;
+}
+
+.pillar-number {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(197, 160, 67, 0.08);
+    line-height: 1;
+    font-family: serif;
+}
+
+.pillar h4 {
+    position: relative;
+    z-index: 1;
+    font-size: 1.6rem;
+}
+
+.closing-quote {
+    background: linear-gradient(135deg, #122b2a 0%, #1a3c3b 100%);
+    padding: 80px 40px;
+    border-radius: var(--radius-lg);
+    color: var(--white) !important;
+    box-shadow: var(--shadow-lg);
+}
+
+.closing-quote span {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.closing-quote {
+    font-size: 2.2rem !important;
+    font-style: normal !important;
+}
+
 /* --- 頁尾 --- */
 .footer {
     padding: 80px 0;
