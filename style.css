@@ -1,23 +1,29 @@
 :root {
-    /* 高級感色調定義 */
-    --primary-deep: #1a3c3b;
-    /* 深森林綠 - 專業、穩重 */
+    /* 高級感色調定義 - 更加細緻的調色 */
+    --primary-deep: #122b2a;
+    --primary-main: #1a3c3b;
     --primary-light: #2c5f5e;
     --accent-gold: #c5a043;
-    /* 雅緻金 - 價值、指引 */
-    --bg-sand: #f9f7f2;
-    /* 暖沙色 - 舒緩、有機 */
-    --text-main: #2d3436;
-    --text-muted: #636e72;
+    --accent-gold-light: #e0c27a;
+    --bg-sand: #fbf9f4;
     --white: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+
+    /* 文字顏色 */
+    --text-dark: #1e272e;
+    --text-main: #2f3640;
+    --text-muted: #7f8c8d;
 
     /* 現代化陰影與導角 */
-    --shadow-soft: 0 10px 30px rgba(26, 60, 59, 0.05);
-    --shadow-strong: 0 20px 40px rgba(26, 60, 59, 0.1);
-    --radius-lg: 24px;
-    --radius-md: 12px;
+    --shadow-sm: 0 4px 12px rgba(26, 60, 59, 0.05);
+    --shadow-md: 0 12px 30px rgba(26, 60, 59, 0.08);
+    --shadow-lg: 0 30px 60px rgba(26, 60, 59, 0.12);
+    --radius-full: 100px;
+    --radius-lg: 32px;
+    --radius-md: 16px;
 
-    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 * {
@@ -27,11 +33,35 @@
 }
 
 body {
-    font-family: 'Noto Sans TC', 'Inter', sans-serif;
-    background-color: var(--white);
+    font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg-sand);
     color: var(--text-main);
     line-height: 1.8;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 背景裝飾球 - 增加溫馨氛圍 */
+.bg-blob {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(197, 160, 67, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+.blob-1 {
+    top: -200px;
+    right: -200px;
+}
+
+.blob-2 {
+    bottom: -200px;
+    left: -200px;
+    background: radial-gradient(circle, rgba(26, 60, 59, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
 }
 
 .container {
@@ -42,14 +72,16 @@ body {
 
 /* --- 進階導航欄 --- */
 header {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     padding: 12px 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(26, 60, 59, 0.05);
+    border-bottom: 1px solid var(--glass-border);
+    transition: var(--transition);
 }
 
 nav {
@@ -127,11 +159,23 @@ nav {
 
 /* --- Hero 設計優化 --- */
 .hero-section {
-    padding: 160px 0 100px;
-    background: radial-gradient(circle at 70% 30%, #f4f1ea 0%, #ffffff 100%);
-    min-height: 90vh;
+    padding: 180px 0 120px;
+    background: linear-gradient(135deg, #ffffff 0%, #f4f1ea 100%);
+    min-height: 95vh;
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c5a043' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    z-index: 0;
 }
 
 .hero-container {
@@ -176,15 +220,16 @@ blockquote {
 }
 
 .btn-primary {
-    background: var(--primary-deep);
+    background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-deep) 100%);
     color: var(--white);
-    box-shadow: 0 10px 25px rgba(26, 60, 59, 0.2);
+    box-shadow: 0 15px 35px rgba(26, 60, 59, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(26, 60, 59, 0.3);
-    background: var(--primary-light);
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(26, 60, 59, 0.35);
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-main) 100%);
 }
 
 .hero-image {
@@ -200,16 +245,19 @@ blockquote {
 
 .floating-badge {
     position: absolute;
-    top: -30px;
+    top: -20px;
     right: -20px;
-    background: var(--white);
-    padding: 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    padding: 24px 32px;
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-strong);
-    width: 200px;
+    box-shadow: var(--shadow-lg);
+    width: 240px;
     font-weight: 700;
     color: var(--primary-deep);
-    border-top: 5px solid var(--accent-gold);
+    border: 1px solid var(--glass-border);
+    border-top: 6px solid var(--accent-gold);
+    line-height: 1.5;
 }
 
 /* --- 子頁面內容區優化 --- */
@@ -262,20 +310,23 @@ blockquote {
 
 /* --- 卡片設計優化 --- */
 .feature-link-card {
-    background: var(--white);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
     padding: 60px 40px;
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(26, 60, 59, 0.05);
+    border: 1px solid var(--glass-border);
     transition: var(--transition);
     text-decoration: none;
     color: inherit;
     text-align: center;
+    box-shadow: var(--shadow-sm);
 }
 
 .feature-link-card:hover {
-    transform: translateY(-15px);
+    transform: translateY(-20px) scale(1.02);
     border-color: var(--accent-gold);
-    box-shadow: var(--shadow-strong);
+    box-shadow: var(--shadow-lg);
+    background: var(--white);
 }
 
 .icon {
