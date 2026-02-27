@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuBtn && navLinks) {
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            // 切換按鈕圖案 (三 -> X)
-            menuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+            menuBtn.classList.toggle('active');
         });
     }
 
