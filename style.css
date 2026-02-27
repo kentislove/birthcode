@@ -325,6 +325,47 @@ blockquote {
     margin-bottom: 16px;
 }
 
+/* --- 解決方案頁面特效 --- */
+.infographic-container {
+    margin: 40px auto 80px;
+    max-width: 900px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-strong);
+}
+
+.infographic-img {
+    width: 100%;
+    display: block;
+}
+
+.harmony-visual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.harmony-item {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(26, 60, 59, 0.05);
+}
+
+.harmony-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.harmony-text {
+    padding: 30px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
 /* --- 聯絡區塊優化 --- */
 .contact-box {
     border-radius: var(--radius-lg);
@@ -464,7 +505,8 @@ blockquote {
     /* 解決方案卡片與服務卡片 */
     .solution-grid,
     .services-container,
-    .features-grid {
+    .features-grid,
+    .harmony-visual-grid {
         grid-template-columns: 1fr;
     }
 
