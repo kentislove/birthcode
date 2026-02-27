@@ -13,7 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. 實作 Intersection Observer (捲動揭開效果)
+    // 2. 手機版選單切換
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // 切換按鈕圖案 (三 -> X)
+            menuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+    }
+
+    // 3. 實作 Intersection Observer (捲動揭開效果)
     const revealOptions = {
         threshold: 0.15,
         rootMargin: "0px 0px -50px 0px"
