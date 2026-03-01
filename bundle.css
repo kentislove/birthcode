@@ -835,6 +835,7 @@ blockquote {
 
     /* 解決方案卡片與服務卡片 */
     .solution-grid,
+    .value-pillars,
     .services-container,
     .features-grid,
     .harmony-visual-grid {
