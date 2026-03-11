@@ -1,0 +1,411 @@
+/* quiz.css - 互動 CSS 卡片問答遊戲的樣式 */
+
+.quiz-main-layout {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px 40px;
+    background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.05) 0%, rgba(var(--secondary-rgb), 0.1) 100%);
+}
+
+.quiz-container {
+    width: 100%;
+    max-width: 650px;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+.quiz-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #f0f4f2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.quiz-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0 4px 4px 0;
+}
+
+.quiz-form {
+    position: relative;
+    min-height: 480px;
+}
+
+.quiz-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    /* 動畫設定 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(50px) scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.5s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 顯示時的狀態 */
+.quiz-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+    z-index: 2;
+}
+
+/* 離開時的狀態 (往左退去) */
+.quiz-card.exit {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.95);
+    visibility: hidden;
+}
+
+.card-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.quiz-card h2 {
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.quiz-card p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.input-group {
+    width: 100%;
+    max-width: 380px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #eaeaea;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.input-group input:focus {
+    border-color: var(--secondary-color);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(var(--secondary-rgb), 0.1);
+    outline: none;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.quiz-options {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 380px;
+    justify-content: center;
+}
+
+.quiz-radio {
+    cursor: pointer;
+    flex: 1;
+}
+
+.quiz-radio input {
+    display: none;
+}
+
+.radio-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 20px;
+    border: 2px solid #eaeaea;
+    border-radius: 16px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.quiz-radio input:checked+.radio-card {
+    border-color: var(--primary-color);
+    background: rgba(var(--primary-rgb), 0.05);
+    color: var(--primary-color);
+    box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.15);
+    transform: translateY(-2px);
+}
+
+.quiz-radio:hover .radio-card {
+    border-color: var(--secondary-color);
+}
+
+.quiz-actions {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 380px;
+    justify-content: center;
+}
+
+.btn-primary {
+    padding: 14px 28px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 10px 20px rgba(var(--primary-rgb), 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(var(--primary-rgb), 0.4);
+}
+
+.btn-text {
+    padding: 14px 20px;
+    color: #888;
+    background: transparent;
+    border: none;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.btn-text:hover {
+    color: var(--text-dark);
+}
+
+.btn-submit {
+    padding: 16px 36px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+    box-shadow: 0 10px 20px rgba(230, 126, 34, 0.4);
+    transition: all 0.3s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-4px) scale(1.05);
+}
+
+/* 報表特製樣式 */
+.quiz-card.report-card {
+    overflow-y: auto;
+    justify-content: flex-start;
+    padding-top: 40px;
+    padding-bottom: 50px;
+}
+
+.quiz-card.report-card::-webkit-scrollbar {
+    width: 8px;
+}
+
+.quiz-card.report-card::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.loading-spinner {
+    border: 5px solid rgba(var(--primary-rgb), 0.1);
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 25px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(230, 126, 34, 0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(230, 126, 34, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(230, 126, 34, 0);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Utilities */
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+/* RWD Mobile Adjustments (行動裝置優化) */
+@media (max-width: 768px) {
+    .quiz-main-layout {
+        padding: 80px 15px 30px;
+        align-items: flex-start;
+        /* 避免鍵盤跳出時內容被遮擋 */
+    }
+
+    .quiz-container {
+        border-radius: 20px;
+    }
+
+    .quiz-form {
+        min-height: 520px;
+        /* 給予更多的垂直空間給手機的輸入框堆疊 */
+    }
+
+    .quiz-card {
+        padding: 40px 25px;
+    }
+
+    .quiz-card h2 {
+        font-size: 1.4rem;
+        line-height: 1.4;
+    }
+
+    .quiz-card p {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+
+    .card-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .quiz-options {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .radio-card {
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+
+    .quiz-actions {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .btn-primary,
+    .btn-submit {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+
+    .btn-text {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .input-group input {
+        padding: 14px;
+        font-size: 1rem;
+    }
+}
+
+/* 針對小螢幕手機 (如 iPhone SE) */
+@media (max-width: 380px) {
+    .quiz-main-layout {
+        padding: 70px 10px 20px;
+    }
+
+    .quiz-form {
+        min-height: 580px;
+    }
+
+    .quiz-card {
+        padding: 30px 15px;
+    }
+
+    .quiz-card h2 {
+        font-size: 1.25rem;
+    }
+}

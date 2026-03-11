@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動健康測驗 - 數字解碼研習社</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="bundle.css">
+    <link rel="stylesheet" href="quiz.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <header id="header">
+        <nav class="container">
+            <a href="index.html" class="logo-container">
+                <img src="assets/logo.webp" alt="數字解碼研習社" class="logo-img" loading="lazy">
+                <span class="logo-text">數字解碼研習社</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="開啟選單">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="pain-points.html">破解痛點</a></li>
+                <li><a href="solution.html">解決方案</a></li>
+                <li><a href="quiz.html" class="active">互動測驗 <span class="badge-hot">Game</span></a></li>
+                <li><a href="core-value.html">核心價值</a></li>
+                <li><a href="contact.html">預約諮詢</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="quiz-main-layout">
+        <div class="quiz-container">
+
+            <!-- 進度條 -->
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress-fill" id="progress-fill" style="width: 10%;"></div>
+            </div>
+
+            <form id="game-form" class="quiz-form">
+
+                <!-- 卡片 1: 歡迎 -->
+                <div class="quiz-card active" data-step="1">
+                    <div class="card-icon">🎮</div>
+                    <h2>歡迎來到您的專屬解答遊戲</h2>
+                    <p>只要回答幾個簡單的問題，老師的系統大腦就能為你解開「瘦不下來」的底層原因！準備好了嗎？</p>
+                    <button type="button" class="btn-next btn-primary">👉 開始挑戰</button>
+                    <p class="quiz-note mt-10" style="opacity: 0.6; font-size: 0.8rem;">(本測驗不儲存您的任何個資，請安心遊玩)</p>
+                </div>
+
+                <!-- 卡片 2: 性別 -->
+                <div class="quiz-card" data-step="2">
+                    <div class="card-icon">👩‍🦰👨‍🦱</div>
+                    <h2>首先，請問您的生理性別是？</h2>
+                    <p>不同性別對於熱量和脂肪的計算公式完全不同哦！</p>
+                    <div class="quiz-options">
+                        <label class="quiz-radio">
+                            <input type="radio" name="gender" value="female" required>
+                            <span class="radio-card">💁‍♀️ 女性</span>
+                        </label>
+                        <label class="quiz-radio">
+                            <input type="radio" name="gender" value="male">
+                            <span class="radio-card">💁‍♂️ 男性</span>
+                        </label>
+                    </div>
+                    <div class="quiz-actions mt-20">
+                        <button type="button" class="btn-prev btn-text">上一步</button>
+                        <button type="button" class="btn-next btn-primary">下一步 🚀</button>
+                    </div>
+                </div>
+
+                <!-- 卡片 3: 年齡與身高 -->
+                <div class="quiz-card" data-step="3">
+                    <div class="card-icon">📏</div>
+                    <h2>您的年齡與身高？</h2>
+                    <p>了解您的實足年齡與身高，系統才能幫您計算出最頂級的標準體重。</p>
+                    <div class="input-group">
+                        <label>實足年齡 (歲)</label>
+                        <input type="number" id="g-age" placeholder="例如：30" min="10" max="100" required>
+                    </div>
+                    <div class="input-group mt-10">
+                        <label>身高 (公分)</label>
+                        <input type="number" id="g-height" placeholder="例如：155" min="100" max="250" required>
+                    </div>
+                    <div class="quiz-actions mt-20">
+                        <button type="button" class="btn-prev btn-text">上一步</button>
+                        <button type="button" class="btn-next btn-primary">下一步 🚀</button>
+                    </div>
+                </div>
+
+                <!-- 卡片 4: 體重與體脂肪 -->
+                <div class="quiz-card" data-step="4">
+                    <div class="card-icon">⚖️</div>
+                    <h2>目前的體重與體脂率？</h2>
+                    <p>體脂率是決定「你該怎麼瘦」的超級關鍵！</p>
+                    <div class="input-group">
+                        <label>體重 (公斤)</label>
+                        <input type="number" id="g-weight" placeholder="例如：68" step="0.1" required>
+                    </div>
+                    <div class="input-group mt-10">
+                        <label>體脂肪率 (%)</label>
+                        <input type="number" id="g-fat" placeholder="例如：36" step="0.1" required>
+                    </div>
+                    <div class="quiz-actions mt-20">
+                        <button type="button" class="btn-prev btn-text">上一步</button>
+                        <button type="button" class="btn-next btn-primary">下一步 🚀</button>
+                    </div>
+                </div>
+
+                <!-- 卡片 5: BMR -->
+                <div class="quiz-card" data-step="5">
+                    <div class="card-icon">🔥</div>
+                    <h2>基礎代謝率 (BMR)</h2>
+                    <p>這是您一天「躺著不動也會消耗」的神奇熱量喔！</p>
+                    <div class="input-group">
+                        <label>BMR (大卡)</label>
+                        <input type="number" id="g-bmr" placeholder="例如：1230" required>
+                    </div>
+                    <div class="quiz-actions mt-20">
+                        <button type="button" class="btn-prev btn-text">上一步</button>
+                        <button type="button" class="btn-next btn-primary">下一步 🚀</button>
+                    </div>
+                </div>
+
+                <!-- 卡片 6: 進階數據 (選填) -->
+                <div class="quiz-card" data-step="6">
+                    <div class="card-icon">🔬</div>
+                    <h2>你有測量其他進階數據嗎？(選填)</h2>
+                    <p>這些數據能幫助日後諮詢時分析得更徹底！如果沒有可以直接按「跳過」。</p>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>內臟脂肪</label>
+                            <input type="number" id="g-visceral" placeholder="例：8">
+                        </div>
+                        <div class="input-group">
+                            <label>骨量 (%)</label>
+                            <input type="number" id="g-bone" step="0.1" placeholder="例：2.7">
+                        </div>
+                        <div class="input-group">
+                            <label>新陳代謝年齡</label>
+                            <input type="number" id="g-metabolic-age" placeholder="例：35">
+                        </div>
+                        <div class="input-group">
+                            <label>水分 (%)</label>
+                            <input type="number" id="g-water" step="0.1" placeholder="例：35">
+                        </div>
+                        <div class="input-group" style="grid-column: 1 / -1;">
+                            <label>肌肉量 (kg/%)</label>
+                            <input type="number" id="g-muscle" step="0.1" placeholder="例：37">
+                        </div>
+                    </div>
+                    <div class="quiz-actions mt-20">
+                        <button type="button" class="btn-prev btn-text">上一步</button>
+                        <button type="button" class="btn-next btn-primary">不需要/下一步 🚀</button>
+                    </div>
+                </div>
+
+                <!-- 卡片 7: 生日 -->
+                <div class="quiz-card" data-step="7">
+                    <div class="card-icon">🎂</div>
+                    <h2>最後一關：你的終極密碼</h2>
+                    <p>西元生日隱藏了你的性格與情緒爆發點，這也是您為何常被體重困擾的心理關鍵！</p>
+                    <div class="input-group" style="text-align: left;">
+                        <label>公曆生日 (西元)</label>
+                        <input type="date" id="g-birthday" required>
+                    </div>
+                    <div class="quiz-actions mt-20">
+                        <button type="button" class="btn-prev btn-text">上一步</button>
+                        <button type="button" id="btn-submit-game" class="btn-next btn-submit">✨ 揭曉我的終極解析 ✨</button>
+                    </div>
+                </div>
+
+                <!-- 卡片 8: 分析載入中 -->
+                <div class="quiz-card" data-step="8" id="loading-card">
+                    <div class="loading-spinner"></div>
+                    <h2>老師正在為您運算中...</h2>
+                    <p style="color: var(--primary-color);">正在分析雙引擎密碼...</p>
+                </div>
+
+                <!-- 卡片 9: 終極報告 (結果) -->
+                <div class="quiz-card report-card" data-step="9" id="result-card">
+                    <div class="card-icon">🎉</div>
+                    <h2 style="color: var(--primary-color); font-size: 1.8rem; margin-bottom: 20px;">您的解析報告出爐！</h2>
+
+                    <div class="report-content" id="game-report-content"
+                        style="text-align: left; line-height: 1.8; color: #444;">
+                        <!-- JS 將插入內容 -->
+                    </div>
+
+                    <div class="cta-box mt-30">
+                        <h3 style="color: #d9534f; margin-bottom: 10px;">🩺 老師的溫馨結論</h3>
+                        <p style="text-align:left; font-size:0.95rem; margin-bottom:15px;">
+                            這份報告僅為初步推理工具。要達到<b>健康五要素</b>總分 100 分，建議與老師做進階的一對一諮詢以取得最適合你的長期健康規劃！</p>
+                        <a href="https://reurl.cc/xWZXNN" target="_blank" class="btn-primary"
+                            style="display:inline-block; text-decoration:none;">加碼：測試你的健康五要素📝</a>
+                        <br>
+                        <br>
+                        <button type="button" onclick="location.reload()" class="btn-text"
+                            style="color:#666; font-size:0.9rem;">↺ 重新測驗</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 數字解碼研習社 | 數據領航．身心共鳴</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="quiz.js"></script>
+</body>
+
+</html>

@@ -67,7 +67,7 @@
 
                 <div class="harmony-box">
                     <h2>為什麼要「合一教學」？</h2>
-                    <p>身體健康除了營養失衡外，也與內心情緒緊密相關。</p>
+                    <p>身體健康除了營養失衡外，也與內心情緒緊密相關。這就是為什麼「懂身體」加「懂情緒」才是最安全的瘦身法。</p>
                     <div class="harmony-visual-grid">
                         <div class="harmony-item reveal">
                             <img src="assets/stress.webp" alt="壓力與腹部脂肪關聯" loading="lazy">
@@ -88,6 +88,141 @@
                     style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(var(--primary-rgb), 0.05); border-radius: 20px;">
                     <h2 style="font-size: 2.2rem; font-weight: 700; color: var(--primary-color);">
                         這就是為什麼「懂身體」加「懂情緒」才是最安全的瘦身法。</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- 新增：諮詢體驗區 -->
+        <section class="section" style="background-color: #f9fdfa; padding: 60px 0;" id="assessment-tool">
+            <div class="container">
+                <div class="text-center mb-60 reveal">
+                    <span class="section-badge">實作體驗</span>
+                    <h2 class="section-title">初次諮詢：雙引擎健康評估體驗</h2>
+                    <p class="section-subtitle">輸入您的生理數據與生日密碼，讓系統快速模擬老師的科學推理，為您量身打造初步行動計畫。（不儲存任何個資）</p>
+                </div>
+
+                <div class="calculator-container reveal"
+                    style="background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                    <form id="health-form"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+
+                        <div
+                            style="grid-column: 1 / -1; border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 10px; margin-bottom: 10px;">
+                            <h3 style="color: var(--primary-color); font-size: 1.2rem;">Part 1: 體重機上的數字 (生理數據)</h3>
+                        </div>
+
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">生理性別 <span
+                                    style="color:red">*</span></label>
+                            <select id="user-gender" required
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd; background:#fff;">
+                                <option value="female">女性</option>
+                                <option value="male">男性</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">實足年齡 <span
+                                    style="color:red">*</span></label>
+                            <input type="number" id="user-age" required min="10" max="100" placeholder="例：30"
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd;">
+                        </div>
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">身高 (cm)
+                                <span style="color:red">*</span></label>
+                            <input type="number" id="user-height" required min="100" max="250" placeholder="例：155"
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd;">
+                        </div>
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">目前體重 (kg)
+                                <span style="color:red">*</span></label>
+                            <input type="number" id="user-weight" required step="0.1" placeholder="例：68"
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd;">
+                        </div>
+
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">體脂肪率 (%)
+                                <span style="color:red">*</span></label>
+                            <input type="number" id="user-fat" required step="0.1" placeholder="例：36"
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd;">
+                        </div>
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">基礎代謝率 (BMR)
+                                <span style="color:red">*</span></label>
+                            <input type="number" id="user-bmr" required placeholder="例：1230"
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd;">
+                        </div>
+
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">內臟脂肪
+                                (選填)</label>
+                            <input type="number" id="user-visceral" placeholder="例：8"
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd;">
+                        </div>
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">骨量 (%)
+                                (選填)</label>
+                            <input type="number" id="user-bone" step="0.1" placeholder="例：2.7"
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd;">
+                        </div>
+
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">新陳代謝年齡
+                                (選填)</label>
+                            <input type="number" id="user-metabolic-age" placeholder="例：35"
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd;">
+                        </div>
+
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">水分 (%)
+                                (選填)</label>
+                            <input type="number" id="user-water" step="0.1" placeholder="例：35"
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd;">
+                        </div>
+
+                        <div class="form-group" style="display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">肌肉量 (kg/%)
+                                (選填)</label>
+                            <input type="number" id="user-muscle" step="0.1" placeholder="例：37"
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd;">
+                        </div>
+
+                        <div
+                            style="grid-column: 1 / -1; border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 10px; margin-top:20px; margin-bottom: 10px;">
+                            <h3 style="color: var(--secondary-color); font-size: 1.2rem;">Part 2: 西元生日數字 (心理情緒)</h3>
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1; display:flex; flex-direction:column;">
+                            <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; color:#555;">公曆生日
+                                (YYYY/MM/DD) <span style="color:red">*</span></label>
+                            <input type="date" id="user-birthday" required
+                                style="padding:12px; border-radius:8px; border:1px solid #ddd; max-width: 300px;">
+                        </div>
+
+                        <button type="button" id="btn-analyze"
+                            style="grid-column: 1 / -1; padding: 16px; background: var(--primary-color); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top:10px; box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.3);">👉
+                            產出我的行動計畫初稿</button>
+                    </form>
+
+                    <!-- 報告呈現區 -->
+                    <div id="report-result"
+                        style="display:none; margin-top: 40px; padding: 30px; background: #eef8f2; border-radius: 12px; border-left: 6px solid var(--primary-color);">
+                        <div id="report-content" style="line-height: 1.9; color: var(--text-dark);">
+                            <!-- JS將會插入內容在此處 -->
+                        </div>
+
+                        <div
+                            style="margin-top: 30px; padding: 25px; background: white; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                            <h4 style="color: #d9534f; margin-bottom: 15px;">🩺 老師的溫馨提醒：</h4>
+                            <p>本報告僅為「初步科學推理」。我們追求的是<b>健康五要素總分 100
+                                    分</b>的動態平衡機制。要達到真正的永續健康，這階段需要進入<b>一對一諮詢</b>，才能根據您的實際生活習慣、西元生日蘊含的性格特質，給出最符合您天賦與身心需求的解決方案。
+                            </p>
+                            <div style="margin-top: 20px;">
+                                <a href="https://reurl.cc/xWZXNN" target="_blank"
+                                    style="display: inline-block; padding: 12px 24px; background: var(--secondary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; box-shadow: 0 4px 10px rgba(111,207,151, 0.4); transition: 0.3s;">做完體重分析後，再做個健康初步測驗
+                                    📝</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
