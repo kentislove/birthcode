@@ -94,79 +94,62 @@
                     </div>
                     <div class="quiz-actions mt-20">
                         <button type="button" class="btn-prev btn-text">上一步</button>
-                        <button type="button" class="btn-next btn-primary">下一步 🚀</button>
+                        <button type="button" class="btn-next btn-primary btn-disabled">下一步 🚀</button>
                     </div>
                 </div>
 
-                <!-- 卡片 4: 體重與體脂肪 -->
+                <!-- 卡片 4: 體重 -->
                 <div class="quiz-card" data-step="4">
                     <div class="card-icon">⚖️</div>
-                    <h2>目前的體重與體脂率？</h2>
-                    <p>體脂率是決定「你該怎麼瘦」的超級關鍵！</p>
+                    <h2>目前的體重？</h2>
+                    <p>請輸入您的最新體重，系統將結合前一頁的數據自動為您推算出隱藏的健康密碼！</p>
                     <div class="input-group">
                         <label>體重 (公斤)</label>
                         <input type="number" id="g-weight" placeholder="例如：68" step="0.1" required>
                     </div>
-                    <div class="input-group mt-10">
-                        <label>體脂肪率 (%)</label>
-                        <input type="number" id="g-fat" placeholder="例如：36" step="0.1" required>
-                    </div>
                     <div class="quiz-actions mt-20">
                         <button type="button" class="btn-prev btn-text">上一步</button>
-                        <button type="button" class="btn-next btn-primary">下一步 🚀</button>
+                        <button type="button" class="btn-next btn-primary btn-disabled">下一步 🚀</button>
                     </div>
                 </div>
 
-                <!-- 卡片 5: BMR -->
-                <div class="quiz-card" data-step="5">
-                    <div class="card-icon">🔥</div>
-                    <h2>基礎代謝率 (BMR)</h2>
-                    <p>這是您一天「躺著不動也會消耗」的神奇熱量喔！</p>
-                    <div class="input-group">
-                        <label>BMR (大卡)</label>
-                        <input type="number" id="g-bmr" placeholder="例如：1230" required>
-                    </div>
-                    <div class="quiz-actions mt-20">
-                        <button type="button" class="btn-prev btn-text">上一步</button>
-                        <button type="button" class="btn-next btn-primary">下一步 🚀</button>
+                <!-- 卡片 5: 進階數據 (選填) -->
+                <div class="quiz-card scrollable-card" data-step="5">
+                    <div class="scroll-content">
+                        <div class="card-icon">🔬</div>
+                        <h2>你有測量其他進階數據嗎？(選填)</h2>
+                        <p>這些數據能幫助日後諮詢時分析得更徹底！如果沒有可以直接按「跳過」。</p>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>內臟脂肪</label>
+                                <input type="number" id="g-visceral" placeholder="例：8">
+                            </div>
+                            <div class="input-group">
+                                <label>骨量 (%)</label>
+                                <input type="number" id="g-bone" step="0.1" placeholder="例：2.7">
+                            </div>
+                            <div class="input-group">
+                                <label>新陳代謝年齡</label>
+                                <input type="number" id="g-metabolic-age" placeholder="例：35">
+                            </div>
+                            <div class="input-group">
+                                <label>水分 (%)</label>
+                                <input type="number" id="g-water" step="0.1" placeholder="例：35">
+                            </div>
+                            <div class="input-group" style="grid-column: 1 / -1;">
+                                <label>肌肉量 (kg/%)</label>
+                                <input type="number" id="g-muscle" step="0.1" placeholder="例：37">
+                            </div>
+                        </div>
+                        <div class="quiz-actions mt-20">
+                            <button type="button" class="btn-prev btn-text">上一步</button>
+                            <button type="button" class="btn-next btn-primary">不需要/下一步 🚀</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 卡片 6: 進階數據 (選填) -->
+                <!-- 卡片 6: 生日 -->
                 <div class="quiz-card" data-step="6">
-                    <div class="card-icon">🔬</div>
-                    <h2>你有測量其他進階數據嗎？(選填)</h2>
-                    <p>這些數據能幫助日後諮詢時分析得更徹底！如果沒有可以直接按「跳過」。</p>
-                    <div class="input-grid">
-                        <div class="input-group">
-                            <label>內臟脂肪</label>
-                            <input type="number" id="g-visceral" placeholder="例：8">
-                        </div>
-                        <div class="input-group">
-                            <label>骨量 (%)</label>
-                            <input type="number" id="g-bone" step="0.1" placeholder="例：2.7">
-                        </div>
-                        <div class="input-group">
-                            <label>新陳代謝年齡</label>
-                            <input type="number" id="g-metabolic-age" placeholder="例：35">
-                        </div>
-                        <div class="input-group">
-                            <label>水分 (%)</label>
-                            <input type="number" id="g-water" step="0.1" placeholder="例：35">
-                        </div>
-                        <div class="input-group" style="grid-column: 1 / -1;">
-                            <label>肌肉量 (kg/%)</label>
-                            <input type="number" id="g-muscle" step="0.1" placeholder="例：37">
-                        </div>
-                    </div>
-                    <div class="quiz-actions mt-20">
-                        <button type="button" class="btn-prev btn-text">上一步</button>
-                        <button type="button" class="btn-next btn-primary">不需要/下一步 🚀</button>
-                    </div>
-                </div>
-
-                <!-- 卡片 7: 生日 -->
-                <div class="quiz-card" data-step="7">
                     <div class="card-icon">🎂</div>
                     <h2>最後一關：你的終極密碼</h2>
                     <p>西元生日隱藏了你的性格與情緒爆發點，這也是您為何常被體重困擾的心理關鍵！</p>
@@ -176,19 +159,20 @@
                     </div>
                     <div class="quiz-actions mt-20">
                         <button type="button" class="btn-prev btn-text">上一步</button>
-                        <button type="button" id="btn-submit-game" class="btn-next btn-submit">✨ 揭曉我的終極解析 ✨</button>
+                        <button type="button" id="btn-submit-game" class="btn-next btn-submit btn-disabled">✨ 揭曉我的終極解析
+                            ✨</button>
                     </div>
                 </div>
 
-                <!-- 卡片 8: 分析載入中 -->
-                <div class="quiz-card" data-step="8" id="loading-card">
+                <!-- 卡片 7: 分析載入中 -->
+                <div class="quiz-card" data-step="7" id="loading-card">
                     <div class="loading-spinner"></div>
                     <h2>老師正在為您運算中...</h2>
                     <p style="color: var(--primary-color);">正在分析雙引擎密碼...</p>
                 </div>
 
-                <!-- 卡片 9: 終極報告 (結果) -->
-                <div class="quiz-card report-card" data-step="9" id="result-card">
+                <!-- 卡片 8: 終極報告 (結果) -->
+                <div class="quiz-card report-card" data-step="8" id="result-card">
                     <div class="card-icon">🎉</div>
                     <h2 style="color: var(--primary-color); font-size: 1.8rem; margin-bottom: 20px;">您的解析報告出爐！</h2>
 

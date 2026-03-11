@@ -9,12 +9,40 @@ document.addEventListener('DOMContentLoaded', () => {
     // 初始化第一步進度條
     updateProgress();
 
+    // 檢查卡片必填完成度以解除按鈕鎖定
+    function checkCurrentCardValidity(card) {
+        const nextBtn = card.querySelector('.btn-next.btn-primary');
+        if (!nextBtn) return;
+
+        const requiredInputs = Array.from(card.querySelectorAll('input[required]'));
+        if (requiredInputs.length === 0) return;
+
+        const allValid = requiredInputs.every(input => input.checkValidity());
+        if (allValid) {
+            nextBtn.classList.remove('btn-disabled');
+        } else {
+            nextBtn.classList.add('btn-disabled');
+        }
+    }
+
+    // 監聽有必填欄位的輸入
+    document.querySelectorAll('input[required]').forEach(input => {
+        ['input', 'change'].forEach(evt => {
+            input.addEventListener(evt, (e) => {
+                const currentCard = e.target.closest('.quiz-card');
+                checkCurrentCardValidity(currentCard);
+            });
+        });
+    });
+
     // 綁定「下一步」按鈕
     document.querySelectorAll('.btn-next').forEach((btn) => {
         btn.addEventListener('click', (e) => {
+            if (btn.classList.contains('btn-disabled')) return; // 若被禁用則無效
+
             const currentCard = e.target.closest('.quiz-card');
 
-            // 檢查必填項目 (如果在當前卡片內)
+            // 再次檢查必填項目
             if (!validateCard(currentCard)) {
                 return;
             }
@@ -96,20 +124,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (submitBtn) {
         submitBtn.addEventListener('click', () => {
 
+            if (submitBtn.classList.contains('btn-disabled')) return;
             // 抓取最後一頁的必填 (生日) 與前面儲存的表單 input
             const card = submitBtn.closest('.quiz-card');
             if (!validateCard(card)) return;
 
-            // 進入 Loading 畫面 (Step 8)
+            // 進入 Loading 畫面 (Step 7)
             transitionCard(card, loadingCard);
             currentStepIndex++;
             updateProgress();
 
-            // 模擬神經計算延遲 (讓客戶有尊榮感與複雜演算是值得等待的)
+            // 模擬神經計算延遲
             setTimeout(() => {
                 generateReport();
                 transitionCard(loadingCard, resultCard);
-                // 撒花特效 (如果 cdn 成功載入)
+                // 撒花特效
                 if (typeof confetti !== 'undefined') {
                     confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
                 }
@@ -123,11 +152,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const age = parseInt(document.getElementById('g-age').value);
         const height = parseFloat(document.getElementById('g-height').value);
         const weight = parseFloat(document.getElementById('g-weight').value);
-        const fatRate = parseFloat(document.getElementById('g-fat').value);
-        const bmr = parseFloat(document.getElementById('g-bmr').value);
         const birthdayVal = document.getElementById('g-birthday').value;
 
-        // --- 2. 老師的科學公式 ---
+        // --- 2. 老師的系統大腦：自動計算 BMR 與 體脂率 ---
+        // 體脂率 (BFP) 公式: 1.2 × BMI + 0.23 × 年齡 - 10.8 × 性別參數(男1/女0) - 5.4
+        const heightM = height / 100;
+        const bmi = weight / (heightM * heightM);
+        const genderNum = gender === 'male' ? 1 : 0;
+        let fatRate = (1.2 * bmi) + (0.23 * age) - (10.8 * genderNum) - 5.4;
+        if (fatRate < 5) fatRate = 5; // 避免極端數值
+        fatRate = parseFloat(fatRate.toFixed(1));
+
+        // BMR 公式 (Mifflin-St Jeor): 10 × 體重 + 6.25 × 身高 - 5 × 年齡 + (男:5 / 女:-161)
+        let bmr = (10 * weight) + (6.25 * height) - (5 * age);
+        bmr = gender === 'male' ? bmr + 5 : bmr - 161;
+        bmr = Math.round(bmr);
+
+        // --- 3. 老師的科學公式 (計算差距) ---
 
         // 標準體重
         let baseStandardWeight = gender === 'female' ? (height - 100) * 0.8 : (height - 100) * 0.9;
