@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 檢查卡片必填完成度以解除按鈕鎖定
     function checkCurrentCardValidity(card) {
-        const nextBtn = card.querySelector('.btn-next.btn-primary');
+        const nextBtn = card.querySelector('.btn-next');
         if (!nextBtn) return;
 
         const requiredInputs = Array.from(card.querySelectorAll('input[required]'));
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 監聽有必填欄位的輸入
-    document.querySelectorAll('input[required]').forEach(input => {
+    // 監聽有必填欄位的輸入，擴及整體以捕捉 radio group
+    document.querySelectorAll('.quiz-card input').forEach(input => {
         ['input', 'change'].forEach(evt => {
             input.addEventListener(evt, (e) => {
                 const currentCard = e.target.closest('.quiz-card');
@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.btn-next').forEach((btn) => {
         btn.addEventListener('click', (e) => {
             if (btn.classList.contains('btn-disabled')) return; // 若被禁用則無效
+            if (btn.id === 'btn-submit-game') return; // 最後一關送出鈕交給 submit 專屬方法處理
 
             const currentCard = e.target.closest('.quiz-card');
 
