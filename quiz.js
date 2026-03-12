@@ -217,54 +217,105 @@ document.addEventListener('DOMContentLoaded', () => {
             lifeNumber = sum;
 
             const traits = {
-                1: "您具備獨立開創特質，壓力大時容易用『吃』當作情緒出口，造成防禦性囤脂。",
-                2: "您是很在乎和諧的人。委屈累積多時容易造成下半身的肥胖與浮腫。",
-                3: "您充滿創意，但快樂受阻時容易攝取『精緻碳水化合物』安撫大腦。",
-                4: "您重視安全感。壓力大時身體防禦會讓『基礎代謝』停滯，讓肚子變大。",
-                5: "您愛好自由。減重中最怕單調節食，需要充滿趣味的行動計畫。",
-                6: "您非常照顧他人。責任感太重身心疲憊時，要先學會為自己保留空間。",
-                7: "您擅長思考。鑽牛角尖會耗神且影響睡眠品質，這是阻礙瘦身荷爾蒙分泌的主因。",
-                8: "您追求成就。遇到瓶頸時壓力荷爾蒙(皮質醇)升高，導致內臟脂肪直線上升。",
-                9: "您有大愛精神。付出空虛時容易轉化為對高熱量食物的依賴。"
+                1: { title: "領導力/創意", fear: "無能為力、被人否定、淪為平凡、威信掃地", strength: "精明幹練、俐落果敢、獨立完成挑戰、使命必達", weakness: "配合度低、不溝通、自我中心、強勢自負", text: "您具備領導者特質，但這背後常因恐懼平凡而過度內耗。建議學習放下「事必躬親」的執念。" },
+                2: { title: "溝通力/貼心", fear: "無人理解、被人排擠、孤立無援、關係斷裂", strength: "擅長溝通協調、具同理心、傾聽並創造雙贏", weakness: "易猶豫不決、不喜歡獨處、依賴性高、受氣氛影響", text: "您非常在乎和諧。注意不要因為害怕衝突而委曲求全，那會導致下半身因情緒累積而浮腫。" },
+                3: { title: "行動力/熱情", fear: "表現失常、無人喝采、光芒失色、才華不在", strength: "熱情天真、多才多藝、幽默感、驚人的學習速度", weakness: "衝動急躁、易分心、三分鐘熱度、說話不經大腦", text: "您是團隊的感染力來源。當您感到才華被忽視時，容易透過精緻碳水化合物尋求慰藉。" },
+                4: { title: "整合力/計畫", fear: "根基動搖、秩序失控、安全崩盤、被迫改變", strength: "踏實謹慎、善於計畫、守規矩、專注力極強", weakness: "固執己見、不善變通、適應力弱、容易錯失機會", text: "穩定是您的核心。當安全感崩盤時，壓力會讓您的基礎代謝停滯，這正是肚子變大的主因。" },
+                5: { title: "感染力/方向", fear: "行動受限、自由被奪、想逃無門、生活停滯", strength: "口才極佳、不接牌理出牌、獨特幽默、五湖四海皆朋友", weakness: "不擅長守約與承諾、犯錯時喜好狡辯、情緒寫在臉上", text: "自由是您的靈魂。減重計畫若太單調會讓您感到受限，需要充滿挑戰與趣味性的目標。" },
+                6: { title: "策畫力/智慧", fear: "過度操心、關係破裂、愛無回應、道德枷鎖", strength: "領悟力高、學習強、能看見問題關鍵、追求完美", weakness: "性情急躁、急於追求完美、無法達標時容易自責", text: "您是智慧的策劃者。過度的追求完美會帶來情緒負擔，學會為自己保留空間才是瘦身關鍵。" },
+                7: { title: "分析力/專業", fear: "思想貧乏、真相不明、追尋無果、問題無解", strength: "邏輯分析強、追根究柢、靠自學就能成為專家", weakness: "對不感興趣的人事物冷淡、行動力薄弱、難以接近", text: "分析是您的天賦。鑽牛角尖會耗損精神並影響睡眠，這會阻礙您的瘦身荷爾蒙分泌。" },
+                8: { title: "影響力/責任", fear: "被人奪權、地位不保、力量削弱、雄心幻滅", strength: "重承諾負責、追求卓越、具商業頭腦、格局遠大", weakness: "愛管閒事、控制慾強、過度干涉他人、易迷失逐名利", text: "您有強大的責任感。當無力感產生時，皮質醇升高會導致內臟脂肪直線上升。" },
+                9: { title: "洞察力/機會", fear: "願景失焦、無法貢獻、被當透明、無人接納", strength: "富同理心、洞察力強、機智應變、易獲認同成功", weakness: "博學而不專精、追夢易受誘惑分心、難長期堅持", text: "您具備宏觀的洞察力。當理想破滅感到孤寂時，容易轉化為對高熱量食物的心理依賴。" }
             };
 
-            personalityText = `<strong style="font-size:1.2rem; color:var(--secondary-color);">天賦潛能：${lifeNumber}號人</strong><br>${traits[lifeNumber]}`;
+            const t = traits[lifeNumber];
+            personalityText = `
+                <div style="margin-bottom: 15px;">
+                    <strong style="font-size:1.3rem; color:var(--secondary-color);">${lifeNumber}號人：${t.title}</strong>
+                </div>
+                <div style="font-size:0.95rem; line-height:1.6;">
+                    <p><strong>✨ 天赋優勢：</strong>${t.strength}</p>
+                    <p><strong>⚠️ 深層恐懼：</strong>${t.fear}</p>
+                    <p><strong>🧠 心理盲點：</strong>${t.weakness}</p>
+                    <p style="margin-top:10px; color:var(--primary-color);"><em>「${t.text}」</em></p>
+                </div>
+            `;
         }
 
-        // --- 4. 生成結果 ---
+        // --- 4. 抓取其他生理數據 ---
+        const visceralVal = parseFloat(document.getElementById('g-visceral').value) || 0;
+        const waterVal = parseFloat(document.getElementById('g-water').value) || 0;
+        const muscleVal = parseFloat(document.getElementById('g-muscle').value) || 0;
+
+        let waterAdvice = "";
+        if (waterVal > 0) {
+            const waterStandard = gender === 'male' ? 60 : 50;
+            if (waterVal < waterStandard) {
+                waterAdvice = `<p style="color:#d9534f; font-size:0.9rem;">⚠️ 注意：您的水分比例為 ${waterVal}%，低於標準 (${waterStandard}%)。<strong>肌肉是保存水分的堡壘</strong>，缺水會導致代謝下降，建議每日飲水 3000-4000cc。</p>`;
+            }
+        }
+
+        let visceralAdvice = "";
+        if (visceralVal >= 10) {
+            visceralAdvice = `<p style="color:#d9534f; font-size:0.9rem;">⚠️ 警告：內臟脂肪高達 ${visceralVal}！這是引發「腰圍8090」代謝症候群的關鍵，必須優先透過飲食調整處理。</p>`;
+        }
+
+        // --- 5. 生成結果 ---
         const reportArea = document.getElementById('game-report-content');
         reportArea.innerHTML = `
-            <div style="background: rgba(var(--secondary-rgb), 0.1); padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid var(--secondary-color);">
+            <div style="background: rgba(var(--secondary-rgb), 0.1); padding: 22px; border-radius: 12px; margin-bottom: 25px; border-left: 5px solid var(--secondary-color);">
+                <h3 style="margin-top:0; margin-bottom:15px; color:var(--secondary-color);">第一部：自我探索與恐懼解析</h3>
                 ${personalityText}
             </div>
 
-            <h3 style="font-size: 1.1rem; color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 8px; margin-bottom: 12px;">📈 步驟一：生理極限評估</h3>
-            <p style="margin-bottom:20px;">
-                依據您 ${age} 歲的身體年齡與身高，老師判斷您的完美極限落在 <strong>${baseStandardWeight} kg</strong> 左右。<br>
-                將容錯範圍考量進去，目前體重約有 <strong style="color:#d9534f;">${totalManageWeight} kg</strong> 的管理額度。
-            </p>
+            <h3 style="font-size: 1.15rem; color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 8px; margin-bottom: 15px;">📈 第二部：科學健康減重評估</h3>
+            
+            <div style="margin-bottom:20px;">
+                <p><strong>1. 生理極限與標準重量：</strong></p>
+                <p>依據您 ${age} 歲的身高及生理狀態，老師判斷您的完美極限為 <strong>${baseStandardWeight} kg</strong>。目前您有 <strong style="color:#d9534f;">${totalManageWeight} kg</strong> 的管理額度。</p>
+            </div>
 
-            <h3 style="font-size: 1.1rem; color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 8px; margin-bottom: 12px;">⚖️ 步驟二：雙引擎減脂重點</h3>
-            <p style="margin-bottom:20px;">
-                第一引擎 (健康多餘脂肪)：約 <strong>${excessFatKg} kg</strong><br>
-                第二引擎 (熱量總體防備)：約 <strong>${calorieManageWeight} kg</strong> <br>
-                <span style="font-size: 0.9em; color:#777;">(註記：您必須優先處理引擎一的多餘脂肪，以防復胖)</span>
-            </p>
+            <div style="margin-bottom:20px;">
+                <p><strong>2. 雙引擎減脂分析：</strong></p>
+                <p>第一引擎 (健康多餘脂肪)：<strong>${excessFatKg} kg</strong> (這是您必須優先處理的頑固脂肪)<br>
+                   第二引擎 (熱量總體防備)：<strong>${calorieManageWeight} kg</strong></p>
+                <p style="font-size: 0.85rem; color:#666;">💡 知識：肌肉量是您的堡壘，肌肉燃燒熱量的效率是脂肪的 7 倍！</p>
+            </div>
 
-            <h3 style="font-size: 1.1rem; color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 8px; margin-bottom: 12px;">⏳ 步驟三：每日行動計畫</h3>
+            <div style="margin-bottom:20px;">
+                <p><strong>3. 生理指標分析：</strong></p>
+                ${visceralAdvice}
+                ${waterAdvice}
+                ${visceralVal === 0 && waterVal === 0 ? '<p style="color:#777; font-size:0.9rem;">(未填寫進階數據內容，僅提供基礎生理分析)</p>' : ''}
+            </div>
+
+            <h3 style="font-size: 1.15rem; color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 8px; margin-bottom: 15px;">⏳ 第三部：每日精準行動計畫</h3>
             <p>
                 您的基礎代謝為 <strong>${bmr} 大卡</strong>。<br>
-                建議每日熱量攝取：<strong>${intakeCalorie} 大卡</strong> <br>
+                <strong>目標攝取：${intakeCalorie} 大卡 / 每日缺口：${dailyDeficit} 大卡</strong>
                 ${healthWarning}
             </p>
+            
             ${daysForOneKg > 0 ?
-                `<div style="margin-top:15px; background: rgba(var(--primary-rgb), 0.05); padding: 15px; border-radius: 8px; text-align: center;">
-                    <strong style="color:var(--text-dark);">只要維持，每 <span style="color:var(--primary-color); font-size:1.4rem;">${daysForOneKg}</span> 天就能穩定減去 1 公斤！</strong>
+                `<div style="margin-top:20px; background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1), rgba(var(--primary-rgb), 0.05)); padding: 20px; border-radius: 10px; text-align: center; border: 1px solid rgba(var(--primary-rgb), 0.2);">
+                    <p style="margin-bottom:5px; font-weight:bold;">執行口訣：兩兩相加，由內而外</p>
+                    <strong style="color:var(--text-dark);">只要維持此計畫，預計每 <span style="color:var(--primary-color); font-size:1.6rem;">${daysForOneKg}</span> 天就能穩定減去 1 公斤純脂肪！</strong>
                 </div>` :
                 `<div style="margin-top:15px; background: #ffebee; color:#c62828; padding: 15px; border-radius: 8px; text-align: center;">
-                    <strong>目前缺乏足夠的代謝熱量缺口，請盡快尋求老師專業諮詢！</strong>
+                    <strong>目前缺乏熱量缺口，減重將處於停滯期，請尋求老師進行生日解盤諮詢。</strong>
                 </div>`
             }
+
+            <div style="margin-top:25px; border-top: 1px dashed #ccc; padding-top: 20px;">
+                <h4 style="color:var(--text-dark); margin-bottom:10px;">🌟 老師的叮嚀：防止復胖的「健康五要素」</h4>
+                <ul style="text-align:left; font-size:0.9rem; color:#555; line-height:1.7;">
+                    <li><strong>1. 均衡營養：</strong> 早餐最重要，晚餐熱量若未消化完會轉化為脂肪。</li>
+                    <li><strong>2. 充足水分：</strong> 建議每日飲水 3000-4000cc，促進代謝與排毒。</li>
+                    <li><strong>3. 足夠睡眠：</strong> 修復肌肉並調節抑制食慾的荷爾蒙。</li>
+                    <li><strong>4. 適當運動：</strong> 建議體脂降到標準 10% 以內再開始規律運動。</li>
+                    <li><strong>5. 愉悅心情：</strong> 避免「情緒性飲食」導致內臟脂肪堆積。</li>
+                </ul>
+            </div>
         `;
     }
 });
