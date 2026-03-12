@@ -39,45 +39,43 @@
 
 .quiz-form {
     position: relative;
-    min-height: 480px;
+    width: 100%;
+    padding-top: 15px;
+    /* 為進度條留出安全距離 */
 }
 
 .quiz-card {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: none;
+    /* 平時隱藏，不佔空間也就不會干擾整體高度 */
     width: 100%;
-    height: 100%;
-    padding: 50px 40px;
-    display: flex;
+    padding: 40px 40px 50px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-
-    /* 動畫設定 */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(50px) scale(0.95);
-    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.5s;
-    pointer-events: none;
-    z-index: 1;
+    animation: fadeSlide 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-/* 顯示時的狀態 */
+/* 顯示時的狀態：撐開高度 */
 .quiz-card.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0) scale(1);
-    pointer-events: auto;
-    z-index: 2;
+    display: flex;
 }
 
-/* 離開時的狀態 (往左退去) */
+/* 離開時的狀態 */
 .quiz-card.exit {
-    opacity: 0;
-    transform: translateX(-50px) scale(0.95);
-    visibility: hidden;
+    display: none;
+}
+
+@keyframes fadeSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .card-icon {
@@ -249,31 +247,7 @@
     transform: translateY(-4px) scale(1.05);
 }
 
-/* 卡片內容過多的捲動優化 */
-.quiz-card.scrollable-card {
-    justify-content: flex-start;
-    overflow-y: auto;
-    padding-top: 30px;
-    padding-bottom: 50px;
-}
-
-.quiz-card.scrollable-card .scroll-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.quiz-card.scrollable-card::-webkit-scrollbar,
-.quiz-card.report-card::-webkit-scrollbar {
-    width: 8px;
-}
-
-.quiz-card.scrollable-card::-webkit-scrollbar-thumb,
-.quiz-card.report-card::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
-}
+/* 移除不必要的卷軸樣式，已改為彈性高度框架 */
 
 .loading-spinner {
     border: 5px solid rgba(var(--primary-rgb), 0.1);
@@ -346,11 +320,6 @@
         border-radius: 20px;
     }
 
-    .quiz-form {
-        min-height: 520px;
-        /* 給予更多的垂直空間給手機的輸入框堆疊 */
-    }
-
     .quiz-card {
         padding: 40px 25px;
     }
@@ -413,10 +382,6 @@
 @media (max-width: 380px) {
     .quiz-main-layout {
         padding: 70px 10px 20px;
-    }
-
-    .quiz-form {
-        min-height: 580px;
     }
 
     .quiz-card {
